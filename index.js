@@ -1,6 +1,5 @@
-const ENV = process.env.NODE_ENV || 'dev'; // dev / production
 const Redis = require("ioredis");
-const sendEmail = require('./functions/testSendEmail')
+const sendEmail = require('./lib/sendEmail');
 
 const redisKey = {
     pendding: 'MAIL_TASK_PENDDING',
@@ -64,8 +63,8 @@ const main = () => {
     const loop = () => {
         loadTask().then(res => {
             sendEmail(res)
-                .then(excuteSuccess)
-                .catch(excuteFaild)
+                .then(() => excuteSuccess(res))
+                .catch(() => excuteFaild(res))
                 .finally(loop);
         }).catch(() => {
             // 没有数据的话N秒后再重新加载任务
@@ -76,25 +75,3 @@ const main = () => {
     loop();
 }
 main();
-
-
-
-// // 线上环境开始订阅商城的redis
-// if (ENV === 'production') {
-//     const redisSinglePage = new Redis({
-//         port: 6379,
-//         host: "47.241.63.47", // SG-singlePage 服务器
-//         password: "Cullen135113",
-//         db: 0,
-//     });
-//     redisSinglePage.subscribe("node-mailer");
-//     redisSinglePage.on("message", recivedMessage);
-// }
-
-
-
-
-
-
-
-  

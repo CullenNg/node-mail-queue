@@ -1,0 +1,14 @@
+{
+  "scripts": {
+    "dev": "cross-env NODE_ENV=dev nodemon index.js",
+    "start": "pm2 start ecosystem.config.js"
+  },
+  "dependencies": {
+    "cross-env": "^7.0.3",
+    "express": "^4.17.1",
+    "ioredis": "^4.27.9",
+    "node-schedule": "^2.0.0",
+    "nodemailer": "^6.4.6",
+    "pm2": "^4.4.0"
+  }
+}
