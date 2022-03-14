@@ -1,5 +1,5 @@
 # 简介
-通过 Node Redis NodeMailer 实现异步队列发送邮件业务
+通过 ```Node``` ```Redis``` ```NodeMailer``` 实现异步队列发送邮件业务
 
 ### 必要的配置项
 1. Redis服务器相关参数  ```index.js```、```test/push.js```, 
